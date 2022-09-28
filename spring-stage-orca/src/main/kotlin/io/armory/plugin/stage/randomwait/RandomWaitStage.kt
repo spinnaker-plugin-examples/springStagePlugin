@@ -1,9 +1,12 @@
 package io.armory.plugin.stage.randomwait
 
+import com.netflix.spinnaker.kork.expressions.ExpressionEvaluationSummary
 import com.netflix.spinnaker.kork.plugins.api.spring.ExposeToApp
 import com.netflix.spinnaker.orca.api.pipeline.graph.StageDefinitionBuilder
 import com.netflix.spinnaker.orca.api.pipeline.graph.TaskNode
 import com.netflix.spinnaker.orca.api.pipeline.models.StageExecution
+import com.netflix.spinnaker.orca.pipeline.ExpressionAwareStageDefinitionBuilder
+import com.netflix.spinnaker.orca.pipeline.util.ContextParameterProcessor
 import org.springframework.stereotype.Component
 
 /**
@@ -12,7 +15,7 @@ import org.springframework.stereotype.Component
  */
 @Component
 @ExposeToApp
-class RandomWaitStage : StageDefinitionBuilder {
+class RandomWaitStage : ExpressionAwareStageDefinitionBuilder() {
 
     /**
      * This function describes the sequence of substeps, or "tasks" that comprise this
@@ -23,5 +26,9 @@ class RandomWaitStage : StageDefinitionBuilder {
      */
     override fun taskGraph(stage: StageExecution, builder: TaskNode.Builder) {
         builder.withTask("randomWait", RandomWaitTask::class.java)
+    }
+
+    override fun processExpressions(p0: StageExecution, p1: ContextParameterProcessor, p2: ExpressionEvaluationSummary): Boolean {
+        TODO("Not yet implemented")
     }
 }

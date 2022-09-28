@@ -39,6 +39,7 @@ dependencies {
   compileOnly(platform("io.spinnaker.orca:orca-bom:${orcaVersion}"))
   compileOnly "io.spinnaker.kork:kork-plugins-spring-api"
   compileOnly "io.spinnaker.orca:orca-api"
+  compileOnly "io.spinnaker.orca:orca-core"
 
   testImplementation(platform("io.spinnaker.orca:orca-bom:${orcaVersion}"))
 
